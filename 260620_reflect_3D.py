@@ -35,6 +35,7 @@ v_initial_to_final = final_point - initial_point;
 theta_points = np.linspace(-2*np.pi, 2*np.pi, 1001)
 phi_points = np.linspace(0, np.pi,1001)
 
+
 # # plot circle and points
 # plt.plot(r*np.cos(theta_points), r*np.sin(theta_points))
 # plt.plot(initial_point[0],initial_point[1],'ro',markersize=5)
