@@ -11,12 +11,13 @@ os.system("cls")
 #  circle and sphere radius  
 r = 1
 
+# 260624 
 # initial and final points
-# p_initial_point = np.array([0.5,-0.5,0.5])
-# p_final_point   = np.array([1.5,0.5,0.5]) 
+p_initial_point = np.array([0.5,-0.5,0.5])
+p_final_point   = np.array([1.5,0.5,0.5]) 
 
-p_initial_point = np.array([2.0, 0.0, 0.0])
-p_final_point   = np.array([0.0, 0.0, 0.0])
+# p_initial_point = np.array([2.0, 0.0, 0.0])
+# p_final_point   = np.array([0.0, 0.0, 0.0])
                            
 print(p_initial_point)
 print(p_final_point)
