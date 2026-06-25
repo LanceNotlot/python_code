@@ -6,18 +6,17 @@ import matplotlib.pyplot as plt
 
 
 os.system("cls")
-
+# 260624 use revert changes
 #%%
 #  circle and sphere radius  
 r = 1
 
-# 260624 
 # initial and final points
-p_initial_point = np.array([0.5,-0.5,0.5])
-p_final_point   = np.array([1.5,0.5,0.5]) 
+# p_initial_point = np.array([0.5,-0.5,0.5])
+# p_final_point   = np.array([1.5,0.5,0.5]) 
 
-# p_initial_point = np.array([2.0, 0.0, 0.0])
-# p_final_point   = np.array([0.0, 0.0, 0.0])
+p_initial_point = np.array([2.0, 0.0, 0.0])
+p_final_point   = np.array([0.0, 0.0, 0.0])
                            
 print(p_initial_point)
 print(p_final_point)
@@ -218,5 +217,4 @@ ax.set_zlabel("Z", fontsize=14)
 
 plt.show()
 print(distance)
-
 
