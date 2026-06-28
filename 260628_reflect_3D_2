@@ -1,0 +1,80 @@
+# %%
+import os
+import sys
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+# import math
+
+# import scipy as sp
+# import h5py
+# from tqdm import tqdm
+
+os.system("cls")
+
+
+#%%
+#  circle and sphere radius  
+r = 1
+
+# initial and final points
+p_initial = np.array([0.5,-0.5,0])
+p_final   = np.array([1.5,0.5,0]) 
+
+print(p_initial)
+print(p_final)
+
+#%%
+# vector goes from initial to final point
+v_initial_to_final = p_final - p_initial
+
+# find the intersection point
+a = (v_initial_to_final[0]**2 + v_initial_to_final[1]**2 + v_initial_to_final[2]**2)
+b = 2*(p_initial[0]*v_initial_to_final[0] + p_initial[1]*v_initial_to_final[1] + p_initial[2]*v_initial_to_final[2])
+c = (p_initial[0]**2 + p_initial[1]**2 + p_initial[2]**2 - r**2)
+
+discriminant = b**2 - 4*a*c
+if discriminant < 0:
+    print("No real solution for t, the line does not intersect the sphere.")   
+    sys.exit() 
+t1 = (-b + np.sqrt(b**2 - 4*a*c)) / (2*a) # t solution 1
+t2 = (-b - np.sqrt(b**2 - 4*a*c)) / (2*a) # t solution 2
+
+# there are two points where the line intersects the sphere, we take the one that is in between initial and final points, which means the point closer to the final point is the one we want
+p_intersection_1 = p_initial + t1 * v_initial_to_final
+p_intersection_2 = p_initial + t2 * v_initial_to_final
+
+# find the true intersection point
+if   0 <= t1 and t1 <= 1:
+    p_intersection = p_intersection_1
+elif 0 <= t2 and t2 <= 1: 
+    p_intersection = p_intersection_2
+else: 
+    print("The line intersects the sphere, but neither intersection is on the segment.")
+    p_intersection = p_intersection_1 # just take one of them
+    # sys.exit()
+
+
+p_origin = np.array([0,0,0])
+
+v_origin_to_ip = p_intersection - p_origin # normal vector of the plane is the same as the normal vector of the sphere at the intersection point
+v_origin_to_ip_unit_vector = (v_origin_to_ip / np.linalg.norm(v_origin_to_ip)) # put it as unit vector
+
+# here is what is difference between first reflect3D 
+v_ip_to_final = p_final - p_intersection
+
+#find the distance from mid point to final point
+distance_mid_to_final = np.dot(v_ip_to_final,v_origin_to_ip_unit_vector)
+# v_ip_to_final_project_to_origin_to_ip = np.dot(v_ip_to_final,v_origin_to_ip)
+
+# p_mid is the distance from final plus the distance
+p_mid = p_final - distance_mid_to_final*v_origin_to_ip_unit_vector
+
+# p_relfect is the distance from final plus the twice of the distance
+p_reflect = p_final - 2*distance_mid_to_final*v_origin_to_ip_unit_vector
+
+# print(p_intersection)
+# print(p_mid)
+# print(p_reflect)
+# print(distance_mid_to_final)
+
